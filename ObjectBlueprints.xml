@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<objects>
+
+	<object Name="Dormant Waydroid" Load="Merge">
+		<part Name="Render" DisplayName="{{c|drowsy waydroid}}" Tile="Creatures/clau_sleepybeepy.png"/>
+		<part Name="Description" Short="Here floats a waydroid in foggy half-slumber."/>
+		<part Name="ConversationScript" ConversationID="clau_DrowsyWaydroid"/>
+		<part Name="Armor" WornOn="Floating Nearby"/>
+		<part Name="Backpack" WeightWhenWorn="-84"/>
+		<stag Name="Floating"/>
+	</object>
+</objects>

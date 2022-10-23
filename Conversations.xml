@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<conversations>
+
+	<conversation ID="clau_DrowsyWaydroid">
+
+		<start ID="FirstGreet" IfNotFinishedQuest="An occurence! Sewer Slumber" StartQuest="An occurence! Sewer Slumber" AllowEscape="false">
+			<text>
+				{{R|[Boot sequence IN PROGRESS]
+				
+				[!!CAUTION!! -2147483648 internal errors found!]
+				[Scanning for BACKUP...]
+
+				[!!CAUTION!! BACKUP storage corrupted!]
+				[Proceeding without BACKUP...]}}
+			</text>
+			<choice Target="FirstGreet2">*Wait for the waydroid to finish whatever it's doing.*</choice>
+		</start>
+		<node ID="FirstGreet2" AllowEscape="false">
+			<text>
+				{{R|[Boot sequence COMPLETE]}}
+
+				{{w|*The waydroid's eye flickers.*}}
+
+				...friend...?
+			</text>
+			<choice Target="FirstGreet3">*Perhaps. Tell the droid why it's been brought back online.*</choice>
+		</node>
+		<node ID="FirstGreet3" AllowEscape="false">
+			<text>
+				...oh...
+
+				...we're grateful...
+
+				...so tired. travel with you...?
+			</text>
+			<choice Target="End" FinishQuest="An occurence! Sewer Slumber">*You're not going to say no to a companion. If anything, the waydroid can help you carry your belongings.*</choice>
+		</node>
+
+		<start ID="Greet">
+			<text IfNotHaveBlueprint="Dormant Waydroid">
+				...hello, fri-...~
+				...hello...~
+				...live and sleep...~
+				{{w|The waydroid nods off.}}
+			</text>
+			<text IfWearingBlueprint="Dormant Waydroid">
+				...fall asleep. not...~
+				...we help. still tired...~
+				...what a long. road...
+			</text>
+			<text IfHaveBlueprint="Dormant Waydroid">
+				...comfy...~
+				{{w|*The waydroid is sleeping.*}}~
+				...bl. anket...?
+			</text>
+			<!-- <choice ID="Trade" Load="Remove"/> -->
+			<removepart Name="Trade"/>
+			<choice Target="End">*Wish the waydroid to live and sleep.*</choice>
+		</start>
+	</conversation>
+</conversations>
