@@ -1,6 +1,50 @@
 <?xml version="1.0" encoding="utf-8"?>
 <conversations>
 
+	<conversation ID="Otho" Load="Merge">
+		<!-- This is so hacky but I don't know how to do it right and want to push the update soooo... hopefully nobody needs to modify this ;-; -->
+		<node ID="Start" IfHaveActiveQuest="More Than a Willing Spirit" IfHaveItem="clau_DrowsyWaydroid" IfLevelLessOrEqual="12" Load="Replace">
+			<text>
+        Welcome to Grit Gate. I am Otho, Barathrum's steward. I apologize for the manner of our introduction, but we must take precautions. Qud is a very unforgiving place.
+
+        You demonstrate tremendous promise to have returned from Golgotha with such inexperience. Take this firearm as your reward. It bears the mark of our finest gunsmith, Sparafucile. Take this bracelet, as well.
+
+        Return when you are ready to discuss the signal.
+      		</text>
+      		<choice GotoID="End" CallScript="XRL.World.QuestManagers.GritGateScripts.PromoteToApprentice" CompleteQuestStep="More Than a Willing Spirit~Return to Grit Gate|3000">
+        		<text>Thank you. I will return.</text>
+        		<part Name="ReceiveItem" Blueprints="MasterworkCarbine,Hologram Bracelet" Identify="All" />
+      		</choice>
+		</node>
+		<node ID="Start" IfHaveActiveQuest="More Than a Willing Spirit" IfHaveItem="clau_DrowsyWaydroid" IfLevelLessOrEqual="18" Load="Replace">
+			<text>
+        Welcome to Grit Gate. I am Otho, Barathrum's steward. I apologize for the manner of our introduction, but we must take precautions. Qud is a very unforgiving place.
+
+        I am pleased to see that you've returned with the waydroid, though you still know little of the dangers you bear. Take this firearm as your reward. It bears the mark of our finest gunsmith, Sparafucile.
+
+        Return when you are ready to discuss the signal.
+		      </text>
+		      <choice GotoID="End" CallScript="XRL.World.QuestManagers.GritGateScripts.PromoteToApprentice" CompleteQuestStep="More Than a Willing Spirit~Return to Grit Gate|1250">
+		        <text>Thank you. I will return.</text>
+		        <part Name="ReceiveItem" Blueprints="MasterworkCarbine" Identify="All" />
+		      </choice>
+		</node>
+		<node ID="Start" IfHaveActiveQuest="More Than a Willing Spirit" IfHaveItem="clau_DrowsyWaydroid" Load="Replace">
+			<text>
+        Welcome to Grit Gate. I am Otho, Barathrum's steward. I apologize for the manner of our introduction, but we must take precautions. Qud is a very unforgiving place.
+
+        You are worthy to study with us. Take these.
+
+        Return when you are ready to discuss the signal.
+		      </text>
+		      <choice GotoID="End" CallScript="XRL.World.QuestManagers.GritGateScripts.PromoteToApprentice" CompleteQuestStep="More Than a Willing Spirit~Return to Grit Gate|750">
+		        <text>Thank you. I will return.</text>
+		        <part Name="ReceiveItem" Blueprints="EMPGrenade3,ColdGrenade3,StasisGrenade3" Identify="All" />
+		      </choice>
+		</node>
+	</conversation>
+
+
 	<conversation ID="clau_DrowsyWaydroid">
 
 		<start ID="FirstGreet" IfNotFinishedQuest="An occurence! Sewer Slumber" StartQuest="An occurence! Sewer Slumber" AllowEscape="false">
@@ -36,24 +80,50 @@
 			<choice Target="End" FinishQuest="An occurence! Sewer Slumber">*You're not going to say no to a companion. If anything, the waydroid can help you carry your belongings.*</choice>
 		</node>
 
+		<start ID="SusaGreet" IfHaveActiveQuest="Decoding the Signal" IfNotFinishedQuest="An occurence! Live and Sleep" StartQuest="An occurence! Live and Sleep" AllowEscape="false">
+			<text>
+				...friend. a moment?..
+			</text>
+			<choice Target="SusaBlanket1">*You can spare a moment. Nod and see what the waydroid has to say.*</choice>
+			<choice Target="End" FinishQuest="An occurence! Live and Sleep">*You are in a rush. Perhaps some other time. Wish the waydroid to live and sleep.*</choice>
+		</start>
+		<node ID="SusaBlanket1" AllowEscape="false">
+			<text>
+				...we heard. you're going to a...
+
+				...a slumber. place...
+
+				{{w|*The waydroid extends one of =pronouns.possessive= manipulators towards you. It's holding a knitted blanket.*}}
+
+				...we made. for you...
+
+				...live. and sleep in comfort...
+			</text>
+			<choice Target="End" GiveItem="clau_CozyBlanket" FinishQuest="An occurence! Live and Sleep">*Thank the waydroid for its work and accept the blanket. Wish the waydroid to live and sleep.*</choice>
+		</node>
+
 		<start ID="Greet">
-			<text IfNotHaveBlueprint="Dormant Waydroid">
-				...hello, fri-...~
+			<text IfNotHaveBlueprint="clau_DrowsyWaydroid">
+				...hello, frie-...~
 				...hello...~
 				...live and sleep...~
+				{{w|*The waydroid is knitting.*}}~
 				{{w|The waydroid nods off.}}
 			</text>
-			<text IfWearingBlueprint="Dormant Waydroid">
+			<text IfWearingBlueprint="clau_DrowsyWaydroid">
 				...fall asleep. not...~
 				...we help. still tired...~
+				{{w|*The waydroid is knitting.*}}~
 				...what a long. road...
 			</text>
-			<text IfHaveBlueprint="Dormant Waydroid">
+			<text IfHaveBlueprint="clau_DrowsyWaydroid">
 				...comfy...~
+				{{w|*The waydroid is sleeping.*}}~
+				{{w|*The waydroid is knitting.*}}~
+				{{w|*The waydroid is knitting.*}}~
 				{{w|*The waydroid is sleeping.*}}~
 				...bl. anket...?
 			</text>
-			<!-- <choice ID="Trade" Load="Remove"/> -->
 			<removepart Name="Trade"/>
 			<choice Target="End">*Wish the waydroid to live and sleep.*</choice>
 		</start>

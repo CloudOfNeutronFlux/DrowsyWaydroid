@@ -1,12 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <objects>
 
-	<object Name="Dormant Waydroid" Load="Merge">
+	<object Name="Scrapped Waydroid" Load="Merge">
+		<part Name="Repair" FixedBlueprint="clau_DrowsyWaydroid" Difficulty="1"/>
+	</object>
+
+	<object Name="clau_DrowsyWaydroid" Inherits="Dormant Waydroid">
 		<part Name="Render" DisplayName="{{c|drowsy waydroid}}" Tile="Creatures/clau_sleepybeepy.png"/>
 		<part Name="Description" Short="Here floats a waydroid in foggy half-slumber."/>
 		<part Name="ConversationScript" ConversationID="clau_DrowsyWaydroid"/>
 		<part Name="Armor" WornOn="Floating Nearby"/>
 		<part Name="Backpack" WeightWhenWorn="-84"/>
+		<part Name="CompleteQuestOnTaken" Quest="More Than a Willing Spirit" QuestStep="Repair the Waydroid"/>
 		<stag Name="Floating"/>
+		<stag Name="Storage"/>
+		<tag Name="Gender" Value="neuter"/>
+		<tag Name="ExcludeFromDynamicEncounters"/>
+	</object>
+
+	<object Name="clau_CozyBlanket" Inherits="BaseCloak">
+		<part Name="Render" DisplayName="cozy blanket" Tile="Items/clau_CozyBlanket.png" ColorString="&amp;C" DetailColor="Y"/>
+		<part Name="Description" Short="A knitted blanket offers warmth and comfort to a weary traveller. All craftsdroidship is of the highest quality."/>
+		<part Name="Commerce" Value="10"/>
+		<part Name="Physics" Weight="2"/>
+		<part Name="Armor" AV="1" DV="-1" Cold="15"/>
+		<part Name="Bed" />
+		<stag Name="Sleep" />
+		<tag Name="Tier" Value="2"/>
+		<tag Name="ExcludeFromDynamicEncounters"/>
 	</object>
 </objects>
